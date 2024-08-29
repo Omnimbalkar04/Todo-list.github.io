@@ -12,10 +12,12 @@ const TodoItems = () => {
   return (
 
     <div className={styles.itemsContainer}>
-      {todoItems.map(item => <TodoItem key={item.name} todoDate={item.dueDate} todoName={item.name}></TodoItem>)}
+      {todoItems.map(item => (<TodoItem key={item._id}  
+       todoDate={item.dueDate} todoName={item.name} todoId={item._id}
+       ></TodoItem>))}
 
     </div>
   );
-}
+};
 
 export default TodoItems;

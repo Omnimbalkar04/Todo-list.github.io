@@ -36,7 +36,9 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({
+    origin: " http://localhost:5173/Todo-list.github.io/",
+}));
 
 app.use(express.json()); // Middleware to parse JSON request bodies
 

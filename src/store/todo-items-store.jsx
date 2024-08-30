@@ -34,22 +34,24 @@ const todoItemsReducer = (currTodoItems, action) => {
 const TodoItemsContextProvider = ({children}) => {
   const [todoItems, dispatchTodoItems] = useReducer(todoItemsReducer, []);
 
-  useEffect(() => {
-    fetchItems();
-  },[]);
-
   const fetchItems = () => {
-    fetch("http://localhost:5000/api/todos")
+    fetch("https://todo-list-backend-5sx9.onrender.com/api/todos")
     .then(response => response.json())
     .then(data => dispatchTodoItems({ type: "SET_ITEMS" , payload: { items: data}}))
     .catch(error => console.error("Error fetching todos:", error));
   };
 
 
+  useEffect(() => {
+    fetchItems();
+  },[]);
+
+
+
 
   const addNewItem = async (itemName, itemDueDate) => {
     try {
-   const response = await fetch("http://localhost:5000/api/todos", {
+   const response = await fetch("https://todo-list-backend-5sx9.onrender.com/api/todos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +73,7 @@ const TodoItemsContextProvider = ({children}) => {
 
   const deleteItem = async (todoItemId) => {
    
-   await fetch(`http://localhost:5000/api/todos/${todoItemId}`, {
+   await fetch(`https://todo-list-backend-5sx9.onrender.com/api/todos/${todoItemId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +87,7 @@ const TodoItemsContextProvider = ({children}) => {
    // Update an item on the server and update the context
    const updateItem = async (todoItemId, itemName, itemDueDate) => {
     try{
-      const response = await fetch(`http://localhost:5000/api/todos/${todoItemId}`, {
+      const response = await fetch(`https://todo-list-backend-5sx9.onrender.com/api/todos/${todoItemId}`, {
       
       method: "PUT",
       headers: {

@@ -34,17 +34,19 @@ const todoItemsReducer = (currTodoItems, action) => {
 const TodoItemsContextProvider = ({children}) => {
   const [todoItems, dispatchTodoItems] = useReducer(todoItemsReducer, []);
 
+
+
+  useEffect(() => {
+    fetchItems();
+  },[]);
+
+  
   const fetchItems = () => {
     fetch("https://todo-list-backend-5sx9.onrender.com/api/todos")
     .then(response => response.json())
     .then(data => dispatchTodoItems({ type: "SET_ITEMS" , payload: { items: data}}))
     .catch(error => console.error("Error fetching todos:", error));
   };
-
-
-  useEffect(() => {
-    fetchItems();
-  },[]);
 
 
 

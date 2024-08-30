@@ -37,7 +37,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: " http://localhost:5173/Todo-list.github.io/",
+    origin: "https://omnimbalkar04.github.io/Todo-list.github.io/",
 }));
 
 app.use(express.json()); // Middleware to parse JSON request bodies
